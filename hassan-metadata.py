@@ -90,7 +90,7 @@ async def on_message(message):
             message_link = f'[by {message.author}]({message.jump_url})'
             origin_channel = f'[{message.channel.mention}]({message.channel.jump_url})'
             # Create the embed construct
-            embed = discord.Embed(title="Hassan's Metadata Scraper")
+            embed = discord.Embed(title=os.getenv('BOT_NAME', "Hassan's Metadata Scraper"))
             embed.set_image(url=attachment.url)
             embed.add_field(name='Original Channel', value=origin_channel)
             embed.add_field(name='Message Link', value=(f'{message_link}'))
