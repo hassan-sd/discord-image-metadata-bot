@@ -68,13 +68,15 @@ async def metadata(ctx, *, url: str):
 @client.event
 async def on_message(message):
     # Check if the message is in a blacklisted category
-    if message.channel.category_id in blacklist_channel_ids:
+    if message.channel.category_id in blacklist_channel_ids or message.channel.id in blacklist_channel_ids:
         return
     # If the message is a PNG image and it has not been processed before
-    if message.attachments and message.attachments[0].filename.endswith('.png') and message.id not in processed_messages:
+    if message.attachments and message.id not in processed_messages:
         # Add the message to the set of processed messages
         processed_messages.add(message.id)
         for attachment in message.attachments:
+            if not attachment.filename.endswith('.png'):
+                return
             # Download the image
             image_data = BytesIO(await attachment.read())
             # Open the image
