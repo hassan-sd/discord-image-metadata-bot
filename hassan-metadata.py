@@ -12,7 +12,7 @@ client = commands.Bot(command_prefix = ['!', '/'], intents=intents)
 bot = commands.Bot(command_prefix='$', intents=intents, help_command=None)
 
 
-env_names = ['METADATA_BLACKLIST_IDS', 'METADATA_CHANNEL_ID', 'DISCORD_API_KEY']
+env_names = ['BLACKLIST_CHANNEL_IDS', 'METADATA_CHANNEL_ID', 'DISCORD_API_KEY']
 env_vals = {}
 for env in env_names:
     val = os.getenv(env)
@@ -23,7 +23,7 @@ for env in env_names:
 blacklist_channel_str = os.getenv('METADATA_BLACKLIST_IDS')
 
 metadata_channel_id = int(env_vals['METADATA_CHANNEL_ID'])
-blacklist_channel_ids = [int(x) for x in env_vals['METADATA_BLACKLIST_IDS']]
+blacklist_channel_ids = [int(x) for x in env_vals['BLACKLIST_CHANNEL_IDS']]
 api_key = env_vals['DISCORD_API_KEY']
 
 # Set up a set to store the processed messages
