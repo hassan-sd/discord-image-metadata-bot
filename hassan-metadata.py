@@ -6,12 +6,13 @@ import aiohttp
 from discord.ext import commands
 from PIL import Image, UnidentifiedImageError
 import requests
+from dotenv import load_dotenv
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix = ['!', '/'], intents=intents)
 bot = commands.Bot(command_prefix='$', intents=intents, help_command=None)
 
-
+load_dotenv()
 env_names = ['BLACKLIST_CHANNEL_IDS', 'METADATA_CHANNEL_ID', 'DISCORD_API_KEY']
 env_vals = {}
 for env in env_names:
@@ -23,7 +24,7 @@ for env in env_names:
 blacklist_channel_str = os.getenv('METADATA_BLACKLIST_IDS')
 
 metadata_channel_id = int(env_vals['METADATA_CHANNEL_ID'])
-blacklist_channel_ids = [int(x) for x in env_vals['BLACKLIST_CHANNEL_IDS']]
+blacklist_channel_ids = [int(x) for x in env_vals['BLACKLIST_CHANNEL_IDS'].split(',')]
 api_key = env_vals['DISCORD_API_KEY']
 
 # Set up a set to store the processed messages
