@@ -8,13 +8,19 @@ Patreon: https://www.patreon.com/sd_hassan
 
 # Setup
 * Setup a discord bot  - https://discord.com/developers
-* Modify the python files api key in line 112 with your discord key from the application you created
-* Setup any "blacklisted" channels where the bot should ignore in line 69 with the Channel ID (Right click any channel and copy the ID)
-* Modify your bot name and post format line 102 through 105
-* Put in the channel ID you want  the logs to be posted to in line 108
+* You must define some environment variables:
+ * `DISCORD_API_KEY`: your discord api key
+ * `BLACKLIST_CHANNEL_IDS`: comma separated list of channel id or channel category ids that you don't want to be scraped (Right click any channel or channel group and copy the ID)
+ * `METADATA_CHANNEL_ID`: channel id to send all metadata to
+ * `BOT_NAME`: the name of the bot (you can leave the default)
 * Install requirements `pip install -r requirements.txt` 
-* Run the bot, `python hassan-metadata.py` 
-
+* Run the bot: 
+ ```shell
+ export DISCORD_API_KEY=12345
+ export METADATA_CHANNEL_ID=5678
+ export BLACKLIST_CHANNEL_IDS=123,456,678
+ python hassan-metadata.py
+ ``` 
 
 # Usage
 * In any non blacklisted channel, upload an image that has metadata
